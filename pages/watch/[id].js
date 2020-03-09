@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import Router, { useRouter } from 'next/router'
-import Player from '../../components/Player'
+import Player from '../../components/player'
 import { videos } from '../../assets/data'
 
 function Watch() {
