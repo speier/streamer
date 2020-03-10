@@ -17,3 +17,13 @@
 .video-js.vjs-user-active.vjs-has-started .vjs-title-bar{
   display: flex;
 }
+
+google-cast-launcher.vjs-cast-button {
+  --disconnected-color: white;
+  --connected-color: white;
+}
+
+google-cast-launcher.vjs-cast-button:hover {
+  --disconnected-color: white;
+  --connected-color: white;
+}

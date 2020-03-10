@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import Router, { useRouter } from 'next/router'
-import Player from '../../components/player'
+import Player from '../../components/Player'
 import { videos } from '../../assets/data'
 
 function Watch() {
@@ -18,26 +18,24 @@ function Watch() {
     return null
   }
 
-  const videoOptions = {
-    autoplay: true,
-    controls: true,
-    preload: 'auto',
-    fill: true,
-    userActions: {
-      hotkeys: true
-    },
-    sources: video.sources
-  }
-
   return (
     <div className="w-screen h-screen bg-black">
-      <Player videoOptions={videoOptions} title={video.title} />
+      <Player sources={video.sources} title={video.title} />
     </div>
   )
 }
 
-Watch.getInitialProps = async ctx => {
-  return videos
+export async function getStaticPaths() {
+  // get the paths we want to pre-render
+  const paths = videos.map(v => `/watch/${v.id}`)
+
+  // we'll pre-render only these paths at build time
+  // { fallback: false } means other routes should 404
+  return { paths, fallback: false }
+}
+
+export async function getStaticProps() {
+  return { props: { videos } }
 }
 
 export default Watch

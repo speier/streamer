@@ -1,5 +1,5 @@
-import Nav from './nav'
-import Footer from './footer'
+import Nav from './Nav'
+import Footer from './Footer'
 
 function Layout(props) {
   return (

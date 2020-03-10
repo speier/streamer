@@ -1,5 +1,5 @@
-import Layout from '../components/layout'
-import Card from '../components/card'
+import Layout from '../components/Layout'
+import Card from '../components/Card'
 import { videos } from '../assets/data'
 
 function Home() {
