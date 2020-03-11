@@ -2,11 +2,9 @@ import { Component } from 'react'
 import Head from 'next/head'
 import videojs from 'video.js'
 import './vjsTitleBar'
-import './vjsCastButton.js'
 
 class Player extends Component {
   componentDidMount() {
-    // instantiate video.js
     this.options = {
       ...{
         autoplay: true,
@@ -20,20 +18,26 @@ class Player extends Component {
       }, ...this.props.options
     }
 
+    // instantiate video.js
     this.player = videojs(this.videoNode, this.options)
-    this.player.addChild('vjsTitleBar', { title: this.props.title })
-    this.player.focus()
 
-    // chromecast
-    window['__onGCastApiAvailable'] = (isAvailable) => {
+    // titlebar
+    this.player.addChild('vjsTitleBar', { title: this.props.title })
+
+    // chromecast button
+    window['__onGCastApiAvailable'] = isAvailable => {
       if (isAvailable) {
         cast.framework.CastContext.getInstance().setOptions({
           receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID,
           autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED
         })
+        require('./vjsCastButton.js')
         this.player.getChild('controlBar').addChild('vjsCastButton')
       }
     }
+
+    // focus player
+    this.player.focus()
   }
 
   // destroy player on unmount
