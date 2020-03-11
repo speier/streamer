@@ -3,20 +3,6 @@ import ReactDOM from 'react-dom'
 import videojs from 'video.js'
 
 class CastButton extends Component {
-  componentDidMount() {
-    const initializeCastApi = () => {
-      cast.framework.CastContext.getInstance().setOptions({
-        receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID,
-        autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED
-      })
-    }
-    window['__onGCastApiAvailable'] = (isAvailable) => {
-      if (isAvailable) {
-        initializeCastApi()
-      }
-    }
-  }
-
   render() {
     return (
       <button className="bg-transparent w-6 h-6 ml-2">

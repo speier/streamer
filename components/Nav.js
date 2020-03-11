@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import logo from '../assets/movie-camera.svg'
+import logo from '../public/movie-camera.svg'
 
 function HeaderLink({ href, title }) {
   const router = useRouter()

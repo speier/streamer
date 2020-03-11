@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import Router, { useRouter } from 'next/router'
 import Player from '../../components/Player'
-import { videos } from '../../assets/data'
+import { videos } from '../../public/data'
 
 function Watch() {
   const router = useRouter()

@@ -1,6 +1,6 @@
 import Layout from '../components/Layout'
 import Card from '../components/Card'
-import { videos } from '../assets/data'
+import { videos } from '../public/data'
 
 function Home() {
   return (

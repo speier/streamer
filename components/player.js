@@ -19,10 +19,21 @@ class Player extends Component {
         sources: this.props.sources
       }, ...this.props.options
     }
+
     this.player = videojs(this.videoNode, this.options)
     this.player.addChild('vjsTitleBar', { title: this.props.title })
-    this.player.getChild('controlBar').addChild('vjsCastButton')
     this.player.focus()
+
+    // chromecast
+    window['__onGCastApiAvailable'] = (isAvailable) => {
+      if (isAvailable) {
+        cast.framework.CastContext.getInstance().setOptions({
+          receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID,
+          autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED
+        })
+        this.player.getChild('controlBar').addChild('vjsCastButton')
+      }
+    }
   }
 
   // destroy player on unmount
