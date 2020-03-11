@@ -5,6 +5,7 @@
 @tailwind utilities;
 
 .video-js .vjs-title-bar {
+  background: rgba(0, 0, 0, 0.5);
   display: none;
 }
 

@@ -4,7 +4,7 @@ import videojs from 'video.js'
 
 function TitleBar({ title }) {
   return (
-    <div className="absolute left-0 pt-8 pr-8 flex items-center vjs-title-bar">
+    <div className="absolute w-full left-0 pt-8 pr-8 pb-8 flex items-center vjs-title-bar">
       <Link href="/">
         <a>
           <svg className="h-8 w-8 ml-8 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
