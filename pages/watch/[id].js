@@ -10,8 +10,7 @@ function Watch({ video }) {
 }
 
 export async function getStaticPaths() {
-  const host = process.env.NODE_ENV === 'production' ? `https://streamer.now.sh` : `http://localhost:${process.env.PORT || 3000}`
-  const res = await fetch(`${host}/api/videos`)
+  const res = await fetch(`http://localhost:3000/api/videos`)
   const videos = await res.json()
 
   // get the paths we want to pre-render
@@ -23,8 +22,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const host = process.env.NODE_ENV === 'production' ? `https://streamer.now.sh` : `http://localhost:${process.env.PORT || 3000}`
-  const res = await fetch(`{host}/api/videos/${params.id}`)
+  const res = await fetch(`http://localhost:3000/api/videos/${params.id}`)
   const video = await res.json()
 
   return { props: { video } }

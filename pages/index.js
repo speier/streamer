@@ -15,8 +15,7 @@ function Home({ videos }) {
 }
 
 export async function getStaticProps() {
-  const host = process.env.NODE_ENV === 'production' ? `https://streamer.now.sh` : `http://localhost:${process.env.PORT || 3000}`
-  const res = await fetch(`${host}/api/videos`)
+  const res = await fetch(`http://localhost:3000/api/videos`)
   const videos = await res.json()
 
   return { props: { videos } }
