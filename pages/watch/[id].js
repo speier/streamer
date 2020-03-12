@@ -1,23 +1,7 @@
-import { useEffect } from 'react'
-import Router, { useRouter } from 'next/router'
+import fetch from 'node-fetch'
 import Player from '../../components/Player'
-import { videos } from '../../public/data'
 
-function Watch() {
-  const router = useRouter()
-  const { id } = router.query
-
-  const video = videos.find(v => v.id === id)
-
-  useEffect(() => {
-    if (video) return
-    Router.push('/')
-  })
-
-  if (!video) {
-    return null
-  }
-
+function Watch({ video }) {
   return (
     <div className="w-screen h-screen bg-black">
       <Player sources={video.sources} title={video.title} />
@@ -26,6 +10,9 @@ function Watch() {
 }
 
 export async function getStaticPaths() {
+  const res = await fetch(`http://localhost:3000/api/videos`)
+  const videos = await res.json()
+
   // get the paths we want to pre-render
   const paths = videos.map(v => `/watch/${v.id}`)
 
@@ -34,8 +21,11 @@ export async function getStaticPaths() {
   return { paths, fallback: false }
 }
 
-export async function getStaticProps() {
-  return { props: { videos } }
+export async function getStaticProps({ params }) {
+  const res = await fetch(`http://localhost:3000/api/videos/${params.id}`)
+  const video = await res.json()
+
+  return { props: { video } }
 }
 
 export default Watch
