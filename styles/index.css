@@ -4,6 +4,10 @@
 /* purgecss end ignore */
 @tailwind utilities;
 
+.logo-text {
+  text-shadow: 0 0 3px #FF0000;
+}
+
 .video-js .vjs-title-bar {
   background: rgba(0, 0, 0, 0.5);
   display: none;
@@ -14,8 +18,8 @@
   and only when paused or when the user is
   interacting with the player.
 */
-.video-js.vjs-paused.vjs-has-started .vjs-title-bar,
-.video-js.vjs-user-active.vjs-has-started .vjs-title-bar{
+
+.video-js.vjs-paused.vjs-has-started .vjs-title-bar, .video-js.vjs-user-active.vjs-has-started .vjs-title-bar {
   display: flex;
 }
 

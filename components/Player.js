@@ -11,6 +11,7 @@ class Player extends Component {
         controls: true,
         preload: 'auto',
         fill: true,
+        nativeControlsForTouch: false,
         userActions: {
           hotkeys: true
         },
