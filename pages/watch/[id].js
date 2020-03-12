@@ -10,7 +10,8 @@ function Watch({ video }) {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch(`http://localhost:3000/api/videos`)
+  const host = process.env.NODE_ENV === 'production' ? `https://streamer.now.sh` : `http://localhost:${process.env.PORT || 3000}`
+  const res = await fetch(`${host}/api/videos`)
   const videos = await res.json()
 
   // get the paths we want to pre-render
