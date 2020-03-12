@@ -22,7 +22,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const res = await fetch(`http://localhost:3000/api/videos/${params.id}`)
+  const host = process.env.NODE_ENV === 'production' ? `https://streamer.now.sh` : `http://localhost:${process.env.PORT || 3000}`
+  const res = await fetch(`{host}/api/videos/${params.id}`)
   const video = await res.json()
 
   return { props: { video } }
