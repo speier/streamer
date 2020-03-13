@@ -24,6 +24,26 @@ class Player extends Component {
     // instantiate video.js
     this.player = videojs(this.videoNode, this.options)
 
+    // https://blog.videojs.com/autoplay-best-practices-with-video-js/
+    const bpb = this.player.getChild('bigPlayButton')
+    if (bpb) {
+      bpb.hide()
+    }
+
+    this.player.ready(() => {
+      let promise = this.player.play()
+      if (promise !== undefined) {
+        promise.then(() => {
+          // autoplay started
+        }).catch((error) => {
+          // autoplay was prevented
+          if (bpb) {
+            bpb.show()
+          }
+        })
+      }
+    })
+
     // titlebar
     this.player.addChild('vjsTitleBar', { title: this.props.title })
 
