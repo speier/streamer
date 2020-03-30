@@ -1,7 +1,6 @@
-// import fetch from 'node-fetch'
+import fetch from 'isomorphic-unfetch'
 import Layout from '../components/Layout'
 import Card from '../components/Card'
-import { videos } from './api/videos/_data'
 
 function Home({ videos }) {
   return (
@@ -16,8 +15,8 @@ function Home({ videos }) {
 }
 
 export async function getStaticProps() {
-  // const res = await fetch(`http://localhost:3000/api/videos`)
-  // const videos = await res.json()
+  const res = await fetch(`/api/videos`)
+  const videos = await res.json()
 
   return { props: { videos } }
 }

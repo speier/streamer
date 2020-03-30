@@ -1,6 +1,5 @@
-// import fetch from 'node-fetch'
+import fetch from 'isomorphic-unfetch'
 import Player from '../../components/Player'
-import { videos } from '../api/videos/_data'
 
 function Watch({ video }) {
   return (
@@ -11,8 +10,8 @@ function Watch({ video }) {
 }
 
 export async function getStaticPaths() {
-  // const res = await fetch(`http://localhost:3000/api/videos`)
-  // const videos = await res.json()
+  const res = await fetch(`/api/videos`)
+  const videos = await res.json()
 
   // get the paths we want to pre-render
   const paths = videos.map(v => `/watch/${v.id}`)
@@ -23,10 +22,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  // const res = await fetch(`http://localhost:3000/api/videos/${params.id}`)
-  // const video = await res.json()
-
-  const video = videos.find(v => v.id === params.id)
+  const res = await fetch(`/api/videos/${params.id}`)
+  const video = await res.json()
 
   return { props: { video } }
 }
